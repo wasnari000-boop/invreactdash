@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import { COLORS, FONT, SHADOW, BORDER_RADIUS, getBadgeTextColor } from '../design';
+import { BUTTON, BADGE } from '../design';
 
 
 const MOCK_PRODUCTS = [
@@ -120,7 +121,7 @@ export default function StockDashboard() {
       </header>
       {/* Data Source Toggle */}
       <div style={{ padding: '16px 32px' }}>
-          <button style={{ background: COLORS.info, color: '#212121', borderRadius: BORDER_RADIUS, padding: '8px 16px', border: 'none', fontWeight: 'bold' }} onClick={handleDataToggle}>
+          <button style={BUTTON.info} onClick={handleDataToggle}>
             {useMock ? 'Switch to Real Data' : 'Use Mock Data'}
           </button>
       </div>
@@ -180,12 +181,12 @@ export default function StockDashboard() {
                 <td>{product.sku}</td>
                 <td>{product.current_stock}</td>
                 <td>{product.reorder_level}</td>
-                <td><button style={{ background: COLORS.primary, color: '#212121', borderRadius: 6, border: 'none', padding: '6px 16px', fontWeight: 600 }} onClick={() => setShowOrderModal(true)}>Reorder</button></td>
+                <td><button style={BUTTON.primary} onClick={() => setShowOrderModal(true)}>Reorder</button></td>
               </tr>
             ))}
           </tbody>
         </table>
-  <button style={{ marginTop: 16, background: COLORS.primary, color: '#212121', borderRadius: BORDER_RADIUS, padding: '12px 24px', border: 'none', fontWeight: 'bold' }} onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
+  <button style={{ ...BUTTON.primary, marginTop: 16, padding: '12px 24px' }} onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
       </section>
       {/* ...existing code... */}
   {/* Main Inventory Table */}
@@ -210,11 +211,11 @@ export default function StockDashboard() {
                 <td><img src={product.image_url || '/vite.svg'} alt={product.name} style={{ width: 40, height: 40, borderRadius: 4, background: COLORS.surface }} /></td>
                 <td>{product.name}</td>
                 <td>{product.sku}</td>
-                <td><span style={{ background: product.category.color, color: getBadgeTextColor(product.category.color), padding: '2px 8px', borderRadius: 4 }}>{product.category.name}</span></td>
+                <td><span style={{ ...BADGE.category, background: product.category.color, color: getBadgeTextColor(product.category.color) }}>{product.category.name}</span></td>
                 <td>{product.current_stock}</td>
-                <td><span style={{ color: getStatusColor(product.status), fontWeight: 'bold' }}>{product.status}</span></td>
+                <td><span style={{ ...BADGE.status, color: getStatusColor(product.status) }}>{product.status}</span></td>
                 <td>${product.price}</td>
-                <td><button style={{ background: COLORS.info, color: '#212121', borderRadius: 6, border: 'none', padding: '6px 16px', fontWeight: 600 }}>View</button></td>
+                <td><button style={BUTTON.info}>View</button></td>
               </tr>
             ))}
           </tbody>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { COLORS, SHADOW, BORDER_RADIUS, FONT, getBadgeTextColor } from '../design';
+import { BUTTON, BADGE } from '../design';
 import { LAYOUT } from '../design';
 
 // Placeholder product data
@@ -64,7 +65,7 @@ export default function ProductDetails() {
   <img src={product.image_url || '/placeholder.png'} alt={product.name} style={{ width: 120, height: 120, borderRadius: 12, boxShadow: SHADOW }} />
         <div>
           <h2 style={{ color: COLORS.primary, marginBottom: 8, fontFamily: FONT.family }}>{product.name}</h2>
-          <span style={{ background: product.category.color, color: getBadgeTextColor(product.category.color), padding: '4px 12px', borderRadius: 6, fontWeight: 600 }}>{product.category.name}</span>
+          <span style={{ ...BADGE.category, background: product.category.color, color: getBadgeTextColor(product.category.color) }}>{product.category.name}</span>
           <div style={{ marginTop: 16 }}>
             <p style={{ color: COLORS.muted }}><strong>SKU:</strong> {product.sku}</p>
             <p style={{ color: COLORS.muted }}><strong>Description:</strong> {product.description}</p>

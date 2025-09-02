@@ -1,3 +1,43 @@
+export const BUTTON = {
+  primary: {
+    background: COLORS.primary,
+    color: '#212121',
+    borderRadius: BORDER_RADIUS,
+    padding: '8px 16px',
+    border: 'none',
+    fontWeight: 'bold',
+  },
+  info: {
+    background: COLORS.info,
+    color: '#212121',
+    borderRadius: BORDER_RADIUS,
+    padding: '8px 16px',
+    border: 'none',
+    fontWeight: 'bold',
+  },
+  danger: {
+    background: COLORS.danger,
+    color: '#FFF',
+    borderRadius: BORDER_RADIUS,
+    padding: '8px 16px',
+    border: 'none',
+    fontWeight: 'bold',
+  },
+};
+
+export const BADGE = {
+  category: {
+    padding: '4px 12px',
+    borderRadius: 6,
+    fontWeight: 600,
+    fontSize: 14,
+    display: 'inline-block',
+  },
+  status: {
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+};
 // Centralized design system for InventoryFlow
 // Centralized design system for InventoryFlow
 export const COLORS = {
