@@ -111,9 +111,9 @@ export default function StockDashboard() {
 
   return (
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
-      <div className="container-fluid px-0 d-flex flex-column align-items-center" style={{ maxWidth: 1400, margin: '0 auto' }}>
+  <div className="container mx-auto px-0 d-block" style={{ maxWidth: '1200px', width: '100%', margin: '0 auto' }}>
   {/* Header/Nav */}
-  <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-5 w-100" style={{ maxWidth: 1200 }}>
+  <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-5 w-100" style={{ maxWidth: '1200px' }}>
         <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
         <div className="navbar-nav ms-auto">
           <span className="nav-link active fw-semibold text-primary">Dashboard</span>
@@ -127,7 +127,7 @@ export default function StockDashboard() {
         </button>
       </div>
       {/* KPI Cards */}
-      <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+  <div className="w-100 mb-5" style={{ maxWidth: '1200px' }}>
         <div className="row g-5">
           <div className="col-md-3">
             <div className="card shadow-sm h-100">

@@ -44,24 +44,21 @@ export default function ProductDetails() {
 
   return (
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
-      <div className="container-fluid px-0 d-flex flex-column align-items-center" style={{ maxWidth: 1400, margin: '0 auto' }}>
+      <div className="container mx-auto px-0 d-block" style={{ maxWidth: '1200px', width: '100%', margin: '0 auto' }}>
         {/* Header/Nav */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-5 w-100" style={{ maxWidth: 1200 }}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-5 w-100" style={{ maxWidth: '1200px' }}>
           <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
           <div className="navbar-nav ms-auto">
             <a href="/" className="nav-link fw-semibold text-secondary">Dashboard</a>
             <span className="nav-link active fw-semibold text-primary">Products</span>
-            <span className="nav-link fw-semibold text-secondary">Orders</span>
-            <span className="nav-link fw-semibold text-secondary">Suppliers</span>
           </div>
           <div className="d-flex align-items-center ms-4">
-            <span role="img" aria-label="notifications" className="fs-4 me-2">514</span>
             <img src="/placeholder.png" alt="User" className="rounded-circle" style={{ width: 32, height: 32 }} />
           </div>
         </nav>
 
         {/* Product Summary */}
-        <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+        <div className="w-100 mb-5" style={{ maxWidth: '1200px' }}>
           <div className="row g-5 align-items-center">
             <div className="col-md-3 text-center">
               <img src={product.image_url || '/placeholder.png'} alt={product.name} className="rounded shadow" style={{ width: 120, height: 120 }} />
@@ -83,76 +80,8 @@ export default function ProductDetails() {
           </div>
         </div>
 
-        {/* Stock History Chart (placeholder) */}
-        <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
-          <h3 className="text-primary mb-3">Stock History</h3>
-          <div className="bg-white shadow-sm rounded p-4 mb-4">
-            <div className="row align-items-end" style={{ height: 80 }}>
-              {stockHistory.map((entry, idx) => (
-                <div key={idx} className="col text-center">
-                  <div className="bg-info mx-auto rounded" style={{ height: entry.stock, width: '60%' }}></div>
-                  <div className="text-secondary mt-2" style={{ fontSize: 12 }}>{entry.date}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Recent Orders & Sales History Table */}
-        <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
-          <h3 className="text-primary mb-3">Recent Orders & Sales History</h3>
-          <table className="table table-bordered table-hover shadow-sm rounded">
-            <thead className="table-light">
-              <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Order ID</th>
-                <th>Quantity</th>
-                <th>Status</th>
-                <th>Unit Price</th>
-                <th>Total Price</th>
-                <th>Counterparty</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orderItems.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{item.date}</td>
-                  <td><span className="fw-bold" style={{ color: getTypeColor(item.type) }}>{item.type}</span></td>
-                  <td>{item.orderId}</td>
-                  <td>{item.quantity}</td>
-                  <td><span className="fw-bold" style={{ color: item.type === 'purchase' ? COLORS.info : COLORS.success }}>{item.type === 'purchase' ? 'Ordered' : 'Sold'}</span></td>
-                  <td>${item.unitPrice}</td>
-                  <td>${item.totalPrice}</td>
-                  <td>{item.counterparty}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {/* Last Purchase Made */}
-          {lastPurchase && (
-            <div className="mb-4 text-info">
-              <strong>Last Ordered:</strong> {lastPurchase.date} | <strong>Status:</strong> Ordered | <strong>Quantity:</strong> {lastPurchase.quantity} | <strong>Price:</strong> ${lastPurchase.unitPrice}
-            </div>
-          )}
-        </div>
-
-        {/* Reorder Requests */}
-        <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
-          <h3 className="text-primary mb-3">Reorder Requests</h3>
-          <ul className="list-group">
-            {reorderRequests.map(req => (
-              <li key={req.id} className="list-group-item d-flex justify-content-between align-items-center bg-white shadow-sm rounded mb-2">
-                <span><strong>Quantity:</strong> {req.quantity}</span>
-                <span><strong>Status:</strong> <span className="text-warning fw-bold">{req.status}</span></span>
-                <span><strong>Date:</strong> {req.created_at}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         {/* Action Buttons */}
-        <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+        <div className="w-100 mb-5" style={{ maxWidth: '1200px' }}>
           <div className="d-flex gap-4">
             <button className="btn btn-info fw-bold text-white px-4 py-2">Adjust Stock</button>
             <button className="btn btn-primary fw-bold text-white px-4 py-2">Edit Product</button>
