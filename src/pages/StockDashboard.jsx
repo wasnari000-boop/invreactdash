@@ -2,8 +2,34 @@
 // Mock data for demonstration
 
 import React, { useState } from 'react';
-import { COLORS, FONT, SHADOW, BORDER_RADIUS, getBadgeTextColor } from '../design';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Utility functions and constants
+const COLORS = {
+  primary: '#0d6efd',
+  secondary: '#6c757d',
+  success: '#198754',
+  danger: '#dc3545',
+  warning: '#ffc107',
+  info: '#0dcaf0',
+  text: '#212529',
+  surface: '#f8f9fa'
+};
+
+// Utility function to get badge text color based on background
+const getBadgeTextColor = (backgroundColor) => {
+  // Convert hex to RGB
+  const hex = backgroundColor.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  
+  // Calculate relative luminance
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // Return white for dark backgrounds, black for light backgrounds
+  return luminance > 0.5 ? '#000000' : '#FFFFFF';
+};
 
 
 const MOCK_PRODUCTS = [
@@ -43,10 +69,10 @@ const notifications = [
 ];
 
 function getStatusColor(status) {
-  if (status === 'in stock') return COLORS.success;
-  if (status === 'low') return COLORS.warning;
-  if (status === 'out of stock') return COLORS.danger;
-  return COLORS.text;
+  if (status === 'in stock') return '#198754';  // success color
+  if (status === 'low') return '#ffc107';       // warning color
+  if (status === 'out of stock') return '#dc3545'; // danger color
+  return '#212529';  // text color
 }
 
 
@@ -176,7 +202,7 @@ export default function StockDashboard() {
         </div>
       </div>
   {/* Low Stock Alert Section */}
-  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+  <div className="w-100 mb-5 mt-5 pt-4" style={{ maxWidth: 1200 }}>
         <h2 className="text-dark mb-3">Needs Reordering</h2>
         <table className="table table-striped table-hover shadow-sm rounded">
           <thead className="table-light">
@@ -223,7 +249,7 @@ export default function StockDashboard() {
           <tbody>
             {products.map(product => (
               <tr key={product.id}>
-                <td><img src={product.image_url || '/vite.svg'} alt={product.name} className="rounded" style={{ width: 40, height: 40, background: COLORS.surface }} /></td>
+                <td><img src={product.image_url || '/vite.svg'} alt={product.name} className="rounded" style={{ width: 40, height: 40, background: '#f8f9fa' }} /></td>
                 <td>{product.name}</td>
                 <td>{product.sku}</td>
                 <td><span className="badge" style={{ background: product.category.color, color: getBadgeTextColor(product.category.color), padding: '4px 12px', borderRadius: 6 }}>{product.category.name}</span></td>
