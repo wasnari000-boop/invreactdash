@@ -1,0 +1,35 @@
+// Centralized design system for InventoryFlow
+export const COLORS = {
+  primary: '#2B6CB0', // Professional blue
+  success: '#48BB78', // In Stock
+  warning: '#ED8936', // Low Stock
+  danger: '#F56565', // Out of Stock
+  info: '#4299E1', // Info/Neutral
+  background: '#F7FAFC', // Off-white
+  surface: '#FFFFFF', // Card backgrounds
+  text: '#2D3748', // Dark gray
+  muted: '#718096', // Muted text
+  border: '#E2E8F0', // Light border
+};
+
+export const FONT = {
+  family: 'Inter, Poppins, Arial, sans-serif',
+  size: '16px',
+  weight: '400',
+};
+
+export const SHADOW = '0 2px 8px rgba(44,62,80,0.08)';
+export const BORDER_RADIUS = '10px';
+
+// Utility for category badge text color
+export function getBadgeTextColor(bgColor) {
+  // Use white for dark backgrounds, dark for light backgrounds
+  // Simple luminance check
+  if (!bgColor) return COLORS.text;
+  const hex = bgColor.replace('#', '');
+  const r = parseInt(hex.substring(0,2), 16);
+  const g = parseInt(hex.substring(2,4), 16);
+  const b = parseInt(hex.substring(4,6), 16);
+  const luminance = (0.299*r + 0.587*g + 0.114*b) / 255;
+  return luminance < 0.5 ? '#FFF' : COLORS.text;
+}
