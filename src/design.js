@@ -6,6 +6,7 @@ export const COLORS = {
   danger: '#F56565', // Out of Stock
   info: '#4299E1', // Info/Neutral
   background: '#F7FAFC', // Off-white
+  gradient: 'linear-gradient(135deg, #e3f0ff 0%, #ffffff 100%)', // Light blue to white
   surface: '#FFFFFF', // Card backgrounds
   text: '#2D3748', // Dark gray
   muted: '#718096', // Muted text
@@ -13,12 +14,12 @@ export const COLORS = {
 };
 
 export const FONT = {
-  family: 'Inter, Poppins, Arial, sans-serif',
+  family: 'Poppins, Inter, Arial, sans-serif',
   size: '16px',
   weight: '400',
 };
 
-export const SHADOW = '0 2px 8px rgba(44,62,80,0.08)';
+export const SHADOW = '0 6px 24px rgba(44,62,80,0.12)';
 export const BORDER_RADIUS = '10px';
 
 // Utility for category badge text color

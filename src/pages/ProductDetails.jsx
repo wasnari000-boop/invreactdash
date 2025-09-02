@@ -36,14 +36,15 @@ function getTypeColor(type) {
   return type === 'purchase' ? COLORS.info : COLORS.success;
 }
 
+
 export default function ProductDetails() {
   // Find last purchase
   const lastPurchase = orderItems.filter(o => o.type === 'purchase').sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
   return (
-    <div style={{ background: COLORS.background, minHeight: '100vh', fontFamily: FONT.family }}>
+    <div style={{ background: COLORS.gradient, minHeight: '100vh', height: '100vh', width: '100vw', fontFamily: FONT.family, overflow: 'auto' }}>
       {/* Header/Nav */}
-      <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 32px', background: COLORS.surface, boxShadow: SHADOW }}>
+  <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 32px', background: COLORS.surface, boxShadow: SHADOW, fontFamily: FONT.family }}>
         <div style={{ fontWeight: 700, fontSize: 24, color: COLORS.primary }}>InventoryFlow</div>
         <nav style={{ display: 'flex', gap: 24 }}>
           <span style={{ color: COLORS.muted }}>Dashboard</span>
@@ -58,10 +59,10 @@ export default function ProductDetails() {
       </header>
 
       {/* Product Summary */}
-      <section style={{ display: 'flex', gap: 32, padding: '32px' }}>
-        <img src={product.image_url || '/placeholder.png'} alt={product.name} style={{ width: 120, height: 120, borderRadius: 12, boxShadow: SHADOW }} />
+  <section style={{ display: 'flex', gap: 32, padding: '32px' }}>
+  <img src={product.image_url || '/placeholder.png'} alt={product.name} style={{ width: 120, height: 120, borderRadius: 12, boxShadow: SHADOW }} />
         <div>
-          <h2 style={{ color: COLORS.primary, marginBottom: 8 }}>{product.name}</h2>
+          <h2 style={{ color: COLORS.primary, marginBottom: 8, fontFamily: FONT.family }}>{product.name}</h2>
           <span style={{ background: product.category.color, color: getBadgeTextColor(product.category.color), padding: '4px 12px', borderRadius: 6, fontWeight: 600 }}>{product.category.name}</span>
           <div style={{ marginTop: 16 }}>
             <p style={{ color: COLORS.muted }}><strong>SKU:</strong> {product.sku}</p>
@@ -81,11 +82,11 @@ export default function ProductDetails() {
         <h3 style={{ color: COLORS.primary }}>Stock History</h3>
         <div style={{ background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, padding: 24, marginBottom: 24 }}>
           {/* Replace with chart library for real data */}
-          <div style={{ display: 'flex', gap: 16 }}>
+          <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', height: 80 }}>
             {stockHistory.map((entry, idx) => (
-              <div key={idx} style={{ textAlign: 'center' }}>
-                <div style={{ color: COLORS.info, fontWeight: 700 }}>{entry.stock}</div>
-                <div style={{ color: COLORS.muted, fontSize: 12 }}>{entry.date}</div>
+              <div key={idx} style={{ flex: 1, textAlign: 'center' }}>
+                <div style={{ background: COLORS.info, height: entry.stock, width: '60%', margin: '0 auto', borderRadius: 6 }}></div>
+                <div style={{ color: COLORS.muted, fontSize: 12, marginTop: 8 }}>{entry.date}</div>
               </div>
             ))}
           </div>
@@ -93,7 +94,7 @@ export default function ProductDetails() {
       </section>
 
       {/* Recent Orders & Sales History Table */}
-      <section style={{ padding: '0 32px 32px 32px' }}>
+  <section style={{ padding: '0 32px 32px 32px', boxShadow: SHADOW, borderRadius: BORDER_RADIUS, background: COLORS.surface }}>
         <h3 style={{ color: COLORS.primary }}>Recent Orders & Sales History</h3>
         <table style={{ width: '100%', background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, marginBottom: 24 }}>
           <thead style={{ background: COLORS.background }}>
@@ -102,6 +103,7 @@ export default function ProductDetails() {
               <th>Type</th>
               <th>Order ID</th>
               <th>Quantity</th>
+              <th>Status</th>
               <th>Unit Price</th>
               <th>Total Price</th>
               <th>Counterparty</th>
@@ -114,6 +116,7 @@ export default function ProductDetails() {
                 <td><span style={{ color: getTypeColor(item.type), fontWeight: 600 }}>{item.type}</span></td>
                 <td>{item.orderId}</td>
                 <td>{item.quantity}</td>
+                <td><span style={{ color: item.type === 'purchase' ? COLORS.info : COLORS.success }}>{item.type === 'purchase' ? 'Ordered' : 'Sold'}</span></td>
                 <td>${item.unitPrice}</td>
                 <td>${item.totalPrice}</td>
                 <td>{item.counterparty}</td>
@@ -124,7 +127,7 @@ export default function ProductDetails() {
         {/* Last Purchase Made */}
         {lastPurchase && (
           <div style={{ marginBottom: 24, color: COLORS.info }}>
-            <strong>Last Purchase Made:</strong> {lastPurchase.date} | Quantity: {lastPurchase.quantity} | Price: ${lastPurchase.unitPrice}
+            <strong>Last Ordered:</strong> {lastPurchase.date} | <strong>Status:</strong> Ordered | <strong>Quantity:</strong> {lastPurchase.quantity} | <strong>Price:</strong> ${lastPurchase.unitPrice}
           </div>
         )}
       </section>
