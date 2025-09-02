@@ -115,19 +115,8 @@ export default function StockDashboard() {
         <div style={{ fontWeight: 700, fontSize: 24, color: COLORS.primary }}>InventoryFlow</div>
         <nav style={{ display: 'flex', gap: 24 }}>
           <span style={{ color: COLORS.primary, fontWeight: 600 }}>Dashboard</span>
-          <span style={{ color: COLORS.muted }}>Products</span>
-          <span style={{ color: COLORS.muted }}>Orders</span>
-          <span style={{ color: COLORS.muted }}>Suppliers</span>
+          <a href="/product-details" style={{ color: COLORS.muted, textDecoration: 'none', fontWeight: 600 }}>Products</a>
         </nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ position: 'relative' }}>
-            <span role="img" aria-label="notifications" style={{ fontSize: 22 }}>🔔</span>
-            {notifications.some(n => !n.is_read) && (
-              <span style={{ position: 'absolute', top: -4, right: -4, background: COLORS.danger, color: '#FFF', borderRadius: '50%', width: 16, height: 16, fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>!</span>
-            )}
-          </span>
-          <img src="/placeholder.png" alt="User" style={{ width: 32, height: 32, borderRadius: '50%' }} />
-        </div>
       </header>
       {/* Data Source Toggle */}
       <div style={{ padding: '16px 32px' }}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { COLORS, SHADOW, BORDER_RADIUS, FONT, getBadgeTextColor } from '../design';
+import { LAYOUT } from '../design';
 
 // Placeholder product data
 const product = {
@@ -42,11 +43,11 @@ export default function ProductDetails() {
   const lastPurchase = orderItems.filter(o => o.type === 'purchase').sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
   return (
-    <div style={{ background: COLORS.gradient, minHeight: '100vh', height: '100vh', width: '100vw', fontFamily: FONT.family, overflow: 'auto' }}>
+  <div style={LAYOUT.page}>
       {/* Header/Nav */}
-  <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 32px', background: COLORS.surface, boxShadow: SHADOW, fontFamily: FONT.family }}>
+  <header style={LAYOUT.header}>
         <div style={{ fontWeight: 700, fontSize: 24, color: COLORS.primary }}>InventoryFlow</div>
-        <nav style={{ display: 'flex', gap: 24 }}>
+  <nav style={LAYOUT.nav}>
           <span style={{ color: COLORS.muted }}>Dashboard</span>
           <span style={{ color: COLORS.primary, fontWeight: 600 }}>Products</span>
           <span style={{ color: COLORS.muted }}>Orders</span>
@@ -59,7 +60,7 @@ export default function ProductDetails() {
       </header>
 
       {/* Product Summary */}
-  <section style={{ display: 'flex', gap: 32, padding: '32px' }}>
+  <section style={{ display: 'flex', gap: 32, padding: '32px', background: COLORS.boxGradient, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, margin: 4 }}>
   <img src={product.image_url || '/placeholder.png'} alt={product.name} style={{ width: 120, height: 120, borderRadius: 12, boxShadow: SHADOW }} />
         <div>
           <h2 style={{ color: COLORS.primary, marginBottom: 8, fontFamily: FONT.family }}>{product.name}</h2>
@@ -94,7 +95,7 @@ export default function ProductDetails() {
       </section>
 
       {/* Recent Orders & Sales History Table */}
-  <section style={{ padding: '0 32px 32px 32px', boxShadow: SHADOW, borderRadius: BORDER_RADIUS, background: COLORS.surface }}>
+  <section style={LAYOUT.section}>
         <h3 style={{ color: COLORS.primary }}>Recent Orders & Sales History</h3>
         <table style={{ width: '100%', background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, marginBottom: 24 }}>
           <thead style={{ background: COLORS.background }}>

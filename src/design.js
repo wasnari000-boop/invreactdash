@@ -1,5 +1,60 @@
+export const LAYOUT = {
+  page: {
+    background: COLORS.gradient,
+    minHeight: '100vh',
+    height: '100vh',
+    width: '100vw',
+    fontFamily: FONT.family,
+    overflow: 'auto',
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '18px 32px',
+    background: COLORS.surface,
+    boxShadow: SHADOW,
+    fontFamily: FONT.family,
+  },
+  nav: {
+    display: 'flex',
+    gap: 24,
+  },
+  kpiBox: {
+    background: COLORS.boxGradient,
+    boxShadow: SHADOW,
+    borderRadius: BORDER_RADIUS,
+    padding: 24,
+    flex: 1,
+    margin: 4,
+  },
+  kpiTitle: {
+    color: '#212121',
+    fontSize: 14,
+    marginBottom: 12,
+    marginLeft: 4,
+  },
+  kpiValue: {
+    fontWeight: 700,
+    fontSize: 28,
+    marginLeft: 4,
+    marginBottom: 8,
+  },
+  table: {
+    width: '100%',
+    background: COLORS.boxGradient,
+    boxShadow: SHADOW,
+    borderRadius: BORDER_RADIUS,
+    margin: 4,
+  },
+  section: {
+    padding: '32px',
+    marginTop: 24,
+  },
+};
 // Centralized design system for InventoryFlow
 export const COLORS = {
+  boxGradient: 'linear-gradient(135deg, #e6ffe6 0%, #ffffff 100%)', // Light green to white
   primary: '#2B6CB0', // Professional blue
   success: '#48BB78', // In Stock
   warning: '#ED8936', // Low Stock
