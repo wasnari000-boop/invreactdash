@@ -1,3 +1,29 @@
+// Centralized design system for InventoryFlow
+// Centralized design system for InventoryFlow
+export const COLORS = {
+  boxGradient: 'linear-gradient(135deg, #e6ffe6 0%, #ffffff 100%)', // Light green to white
+  primary: '#2B6CB0', // Professional blue
+  success: '#48BB78', // In Stock
+  warning: '#ED8936', // Low Stock
+  danger: '#F56565', // Out of Stock
+  info: '#4299E1', // Info/Neutral
+  background: '#F7FAFC', // Off-white
+  gradient: 'linear-gradient(135deg, #e3f0ff 0%, #ffffff 100%)', // Light blue to white
+  surface: '#FFFFFF', // Card backgrounds
+  text: '#2D3748', // Dark gray
+  muted: '#718096', // Muted text
+  border: '#E2E8F0', // Light border
+};
+
+export const FONT = {
+  family: 'Poppins, Inter, Arial, sans-serif',
+  size: '16px',
+  weight: '400',
+};
+
+export const SHADOW = '0 6px 24px rgba(44,62,80,0.12)';
+export const BORDER_RADIUS = '10px';
+
 export const LAYOUT = {
   page: {
     background: COLORS.gradient,
@@ -52,30 +78,7 @@ export const LAYOUT = {
     marginTop: 24,
   },
 };
-// Centralized design system for InventoryFlow
-export const COLORS = {
-  boxGradient: 'linear-gradient(135deg, #e6ffe6 0%, #ffffff 100%)', // Light green to white
-  primary: '#2B6CB0', // Professional blue
-  success: '#48BB78', // In Stock
-  warning: '#ED8936', // Low Stock
-  danger: '#F56565', // Out of Stock
-  info: '#4299E1', // Info/Neutral
-  background: '#F7FAFC', // Off-white
-  gradient: 'linear-gradient(135deg, #e3f0ff 0%, #ffffff 100%)', // Light blue to white
-  surface: '#FFFFFF', // Card backgrounds
-  text: '#2D3748', // Dark gray
-  muted: '#718096', // Muted text
-  border: '#E2E8F0', // Light border
-};
 
-export const FONT = {
-  family: 'Poppins, Inter, Arial, sans-serif',
-  size: '16px',
-  weight: '400',
-};
-
-export const SHADOW = '0 6px 24px rgba(44,62,80,0.12)';
-export const BORDER_RADIUS = '10px';
 
 // Utility for category badge text color
 export function getBadgeTextColor(bgColor) {
