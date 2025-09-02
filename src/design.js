@@ -1,45 +1,4 @@
-export const BUTTON = {
-  primary: {
-    background: COLORS.primary,
-    color: '#212121',
-    borderRadius: BORDER_RADIUS,
-    padding: '8px 16px',
-    border: 'none',
-    fontWeight: 'bold',
-  },
-  info: {
-    background: COLORS.info,
-    color: '#212121',
-    borderRadius: BORDER_RADIUS,
-    padding: '8px 16px',
-    border: 'none',
-    fontWeight: 'bold',
-  },
-  danger: {
-    background: COLORS.danger,
-    color: '#FFF',
-    borderRadius: BORDER_RADIUS,
-    padding: '8px 16px',
-    border: 'none',
-    fontWeight: 'bold',
-  },
-};
 
-export const BADGE = {
-  category: {
-    padding: '4px 12px',
-    borderRadius: 6,
-    fontWeight: 600,
-    fontSize: 14,
-    display: 'inline-block',
-  },
-  status: {
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
-};
-// Centralized design system for InventoryFlow
-// Centralized design system for InventoryFlow
 export const COLORS = {
   boxGradient: 'linear-gradient(135deg, #e6ffe6 0%, #ffffff 100%)', // Light green to white
   primary: '#2B6CB0', // Professional blue
@@ -68,10 +27,14 @@ export const LAYOUT = {
   page: {
     background: COLORS.gradient,
     minHeight: '100vh',
-    height: '100vh',
     width: '100vw',
     fontFamily: FONT.family,
     overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: 32,
+    paddingBottom: 32,
   },
   header: {
     display: 'flex',
@@ -115,10 +78,54 @@ export const LAYOUT = {
   },
   section: {
     padding: '32px',
-    marginTop: 24,
+    marginTop: 32,
+    marginBottom: 32,
+    width: '100%',
+    maxWidth: '1200px',
+    boxSizing: 'border-box',
   },
 };
 
+export const BUTTON = {
+  primary: {
+    background: COLORS.primary,
+    color: '#212121',
+    borderRadius: BORDER_RADIUS,
+    padding: '8px 16px',
+    border: 'none',
+    fontWeight: 'bold',
+  },
+  info: {
+    background: COLORS.info,
+    color: '#212121',
+    borderRadius: BORDER_RADIUS,
+    padding: '8px 16px',
+    border: 'none',
+    fontWeight: 'bold',
+  },
+  danger: {
+    background: COLORS.danger,
+    color: '#FFF',
+    borderRadius: BORDER_RADIUS,
+    padding: '8px 16px',
+    border: 'none',
+    fontWeight: 'bold',
+  },
+};
+
+export const BADGE = {
+  category: {
+    padding: '4px 12px',
+    borderRadius: 6,
+    fontWeight: 600,
+    fontSize: 14,
+    display: 'inline-block',
+  },
+  status: {
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+};
 
 // Utility for category badge text color
 export function getBadgeTextColor(bgColor) {

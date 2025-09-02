@@ -111,23 +111,24 @@ export default function StockDashboard() {
 
   return (
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
-      {/* Header/Nav */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-4">
+      <div className="container-fluid px-0 d-flex flex-column align-items-center" style={{ maxWidth: 1400, margin: '0 auto' }}>
+  {/* Header/Nav */}
+  <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-5 w-100" style={{ maxWidth: 1200 }}>
         <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
         <div className="navbar-nav ms-auto">
           <span className="nav-link active fw-semibold text-primary">Dashboard</span>
           <a href="/product-details" className="nav-link fw-semibold text-secondary">Products</a>
         </div>
       </nav>
-      {/* Data Source Toggle */}
-      <div className="container mb-4">
+  {/* Data Source Toggle */}
+  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
         <button className="btn btn-info text-dark fw-bold" onClick={handleDataToggle}>
           {useMock ? 'Switch to Real Data' : 'Use Mock Data'}
         </button>
       </div>
       {/* KPI Cards */}
-      <div className="container mb-4">
-        <div className="row g-4">
+      <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+        <div className="row g-5">
           <div className="col-md-3">
             <div className="card shadow-sm h-100">
               <div className="card-body">
@@ -162,8 +163,8 @@ export default function StockDashboard() {
           </div>
         </div>
       </div>
-      {/* Sales History Graphic (Bar Chart Placeholder) */}
-      <div className="container mb-4">
+  {/* Sales History Graphic (Bar Chart Placeholder) */}
+  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
         <h2 className="text-dark mb-3">Sales History</h2>
         <div className="row align-items-end" style={{ height: 120 }}>
           {salesHistory.map((entry, idx) => (
@@ -174,8 +175,8 @@ export default function StockDashboard() {
           ))}
         </div>
       </div>
-      {/* Low Stock Alert Section */}
-      <div className="container mb-4">
+  {/* Low Stock Alert Section */}
+  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
         <h2 className="text-dark mb-3">Needs Reordering</h2>
         <table className="table table-striped table-hover shadow-sm rounded">
           <thead className="table-light">
@@ -203,8 +204,8 @@ export default function StockDashboard() {
         </table>
         <button className="btn btn-primary mt-3 px-4 py-2" onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
       </div>
-      {/* Main Inventory Table */}
-      <div className="container mb-4">
+  {/* Main Inventory Table */}
+  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
         <h2 className="text-dark mb-3">Inventory</h2>
         <table className="table table-bordered table-hover shadow-sm rounded">
           <thead className="table-light">
@@ -260,6 +261,7 @@ export default function StockDashboard() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
