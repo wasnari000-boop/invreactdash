@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { COLORS, FONT, SHADOW, BORDER_RADIUS, getBadgeTextColor } from '../design';
-import { BUTTON, BADGE } from '../design';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const MOCK_PRODUCTS = [
@@ -110,60 +110,75 @@ export default function StockDashboard() {
   };
 
   return (
-  <div style={{ background: COLORS.gradient, minHeight: '100vh', height: '100vh', width: '100vw', fontFamily: FONT.family, overflow: 'auto' }}>
+    <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
       {/* Header/Nav */}
-      <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 32px', background: COLORS.surface, boxShadow: SHADOW }}>
-        <div style={{ fontWeight: 700, fontSize: 24, color: COLORS.primary }}>InventoryFlow</div>
-        <nav style={{ display: 'flex', gap: 24 }}>
-          <span style={{ color: COLORS.primary, fontWeight: 600 }}>Dashboard</span>
-          <a href="/product-details" style={{ color: COLORS.muted, textDecoration: 'none', fontWeight: 600 }}>Products</a>
-        </nav>
-      </header>
+      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-4">
+        <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
+        <div className="navbar-nav ms-auto">
+          <span className="nav-link active fw-semibold text-primary">Dashboard</span>
+          <a href="/product-details" className="nav-link fw-semibold text-secondary">Products</a>
+        </div>
+      </nav>
       {/* Data Source Toggle */}
-      <div style={{ padding: '16px 32px' }}>
-          <button style={BUTTON.info} onClick={handleDataToggle}>
-            {useMock ? 'Switch to Real Data' : 'Use Mock Data'}
-          </button>
+      <div className="container mb-4">
+        <button className="btn btn-info text-dark fw-bold" onClick={handleDataToggle}>
+          {useMock ? 'Switch to Real Data' : 'Use Mock Data'}
+        </button>
       </div>
-      {/* ...existing code (KPI cards, tables, modal, etc.)... */}
-  {/* KPI Cards */}
-      <section style={{ display: 'flex', gap: 24, padding: '32px 32px 0 32px' }}>
-        <div style={{ background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, padding: 24, flex: 1 }}>
-            <div style={{ color: '#212121', fontSize: 14 }}>Total Inventory Value</div>
-            <div style={{ color: COLORS.primary, fontWeight: 700, fontSize: 28 }}>${totalValue}</div>
+      {/* KPI Cards */}
+      <div className="container mb-4">
+        <div className="row g-4">
+          <div className="col-md-3">
+            <div className="card shadow-sm h-100">
+              <div className="card-body">
+                <div className="card-title text-dark fs-6 mb-2">Total Inventory Value</div>
+                <div className="card-text text-primary fw-bold fs-3">${totalValue}</div>
+              </div>
+            </div>
           </div>
-        <div style={{ background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, padding: 24, flex: 1 }}>
-            <div style={{ color: '#212121', fontSize: 14 }}>Total Products</div>
-            <div style={{ color: COLORS.primary, fontWeight: 700, fontSize: 28 }}>{totalProducts}</div>
+          <div className="col-md-3">
+            <div className="card shadow-sm h-100">
+              <div className="card-body">
+                <div className="card-title text-dark fs-6 mb-2">Total Products</div>
+                <div className="card-text text-primary fw-bold fs-3">{totalProducts}</div>
+              </div>
+            </div>
           </div>
-        <div style={{ background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, padding: 24, flex: 1 }}>
-            <div style={{ color: '#212121', fontSize: 14 }}>Low Stock Items</div>
-            <div style={{ color: COLORS.warning, fontWeight: 700, fontSize: 28 }}>{lowStock}</div>
+          <div className="col-md-3">
+            <div className="card shadow-sm h-100">
+              <div className="card-body">
+                <div className="card-title text-dark fs-6 mb-2">Low Stock Items</div>
+                <div className="card-text text-warning fw-bold fs-3">{lowStock}</div>
+              </div>
+            </div>
           </div>
-        <div style={{ background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, padding: 24, flex: 1 }}>
-            <div style={{ color: '#212121', fontSize: 14 }}>Out of Stock Items</div>
-            <div style={{ color: COLORS.danger, fontWeight: 700, fontSize: 28 }}>{outOfStock}</div>
+          <div className="col-md-3">
+            <div className="card shadow-sm h-100">
+              <div className="card-body">
+                <div className="card-title text-dark fs-6 mb-2">Out of Stock Items</div>
+                <div className="card-text text-danger fw-bold fs-3">{outOfStock}</div>
+              </div>
+            </div>
           </div>
-      </section>
-      {/* ...existing code... */}
-  {/* Sales History Graphic (Bar Chart Placeholder) */}
-      <section style={{ padding: '32px', marginTop: 24 }}>
-  <h2 style={{ color: '#212121', marginBottom: 16 }}>Sales History</h2>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', height: 120, background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS, padding: 24 }}>
+        </div>
+      </div>
+      {/* Sales History Graphic (Bar Chart Placeholder) */}
+      <div className="container mb-4">
+        <h2 className="text-dark mb-3">Sales History</h2>
+        <div className="row align-items-end" style={{ height: 120 }}>
           {salesHistory.map((entry, idx) => (
-            <div key={idx} style={{ flex: 1, textAlign: 'center' }}>
-              <div style={{ background: COLORS.primary, height: entry.sales, width: '60%', margin: '0 auto', borderRadius: 6 }}></div>
-              <div style={{ color: COLORS.muted, fontSize: 14, marginTop: 8 }}>{entry.month}</div>
+            <div key={idx} className="col text-center">
+              <div className="bg-primary mx-auto rounded" style={{ height: entry.sales, width: '60%' }}></div>
+              <div className="text-secondary mt-2">{entry.month}</div>
             </div>
           ))}
         </div>
-      </section>
-      {/* ...existing code... */}
-  {/* Low Stock Alert Section */}
-      <section style={{ padding: '32px', marginTop: 24 }}>
-  <h2 style={{ color: '#212121', marginBottom: 16 }}>Needs Reordering</h2>
-        <table style={{ width: '100%', background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS }}>
-          <thead style={{ background: COLORS.background, color: '#212121' }}>
+      </div>
+      {/* Low Stock Alert Section */}
+      <div className="container mb-4">
+        <h2 className="text-dark mb-3">Needs Reordering</h2>
+        <table className="table table-striped table-hover shadow-sm rounded">
+          <thead className="table-light">
             <tr>
               <th><input type="checkbox" checked={selectedProducts.length === needsReorder.length && needsReorder.length > 0} onChange={handleSelectAll} /></th>
               <th>Name</th>
@@ -175,25 +190,24 @@ export default function StockDashboard() {
           </thead>
           <tbody>
             {needsReorder.map(product => (
-              <tr key={product.id} style={{ color: '#212121' }}>
+              <tr key={product.id}>
                 <td><input type="checkbox" checked={selectedProducts.includes(product.id)} onChange={() => handleSelect(product.id)} /></td>
                 <td>{product.name}</td>
                 <td>{product.sku}</td>
                 <td>{product.current_stock}</td>
                 <td>{product.reorder_level}</td>
-                <td><button style={BUTTON.primary} onClick={() => setShowOrderModal(true)}>Reorder</button></td>
+                <td><button className="btn btn-primary btn-sm" onClick={() => setShowOrderModal(true)}>Reorder</button></td>
               </tr>
             ))}
           </tbody>
         </table>
-  <button style={{ ...BUTTON.primary, marginTop: 16, padding: '12px 24px' }} onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
-      </section>
-      {/* ...existing code... */}
-  {/* Main Inventory Table */}
-      <section style={{ padding: '32px' }}>
-  <h2 style={{ color: '#212121', marginBottom: 16 }}>Inventory</h2>
-        <table style={{ width: '100%', background: COLORS.surface, boxShadow: SHADOW, borderRadius: BORDER_RADIUS }}>
-          <thead style={{ background: COLORS.background, color: '#212121' }}>
+        <button className="btn btn-primary mt-3 px-4 py-2" onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
+      </div>
+      {/* Main Inventory Table */}
+      <div className="container mb-4">
+        <h2 className="text-dark mb-3">Inventory</h2>
+        <table className="table table-bordered table-hover shadow-sm rounded">
+          <thead className="table-light">
             <tr>
               <th>Thumbnail</th>
               <th>Name</th>
@@ -207,35 +221,41 @@ export default function StockDashboard() {
           </thead>
           <tbody>
             {products.map(product => (
-              <tr key={product.id} style={{ color: '#212121' }}>
-                <td><img src={product.image_url || '/vite.svg'} alt={product.name} style={{ width: 40, height: 40, borderRadius: 4, background: COLORS.surface }} /></td>
+              <tr key={product.id}>
+                <td><img src={product.image_url || '/vite.svg'} alt={product.name} className="rounded" style={{ width: 40, height: 40, background: COLORS.surface }} /></td>
                 <td>{product.name}</td>
                 <td>{product.sku}</td>
-                <td><span style={{ ...BADGE.category, background: product.category.color, color: getBadgeTextColor(product.category.color) }}>{product.category.name}</span></td>
+                <td><span className="badge" style={{ background: product.category.color, color: getBadgeTextColor(product.category.color), padding: '4px 12px', borderRadius: 6 }}>{product.category.name}</span></td>
                 <td>{product.current_stock}</td>
-                <td><span style={{ ...BADGE.status, color: getStatusColor(product.status) }}>{product.status}</span></td>
+                <td><span className="fw-bold" style={{ color: getStatusColor(product.status) }}>{product.status}</span></td>
                 <td>${product.price}</td>
-                <td><button style={BUTTON.info}>View</button></td>
+                <td><button className="btn btn-info btn-sm text-dark">View</button></td>
               </tr>
             ))}
           </tbody>
         </table>
-      </section>
-      {/* ...existing code... */}
-  {/* Order Modal */}
+      </div>
+      {/* Order Modal */}
       {showOrderModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(44,62,80,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-          <div style={{ background: COLORS.surface, borderRadius: BORDER_RADIUS, boxShadow: SHADOW, padding: 32, minWidth: 320 }}>
-            <h2 style={{ color: '#212121', marginBottom: 16 }}>Place Order</h2>
-            <p style={{ color: '#212121' }}>Selected Products:</p>
-            <ul>
-              {products.filter(p => selectedProducts.includes(p.id)).map(p => (
-                <li key={p.id} style={{ marginBottom: 8, color: '#212121' }}>{p.name} (Current: {p.current_stock}, Reorder Level: {p.reorder_level})</li>
-              ))}
-            </ul>
-            <div style={{ display: 'flex', gap: 16, marginTop: 24 }}>
-              <button style={{ background: COLORS.success, color: '#FFF', borderRadius: BORDER_RADIUS, padding: '10px 20px', border: 'none', fontWeight: 'bold' }} onClick={() => setShowOrderModal(false)}>Confirm Order</button>
-              <button style={{ background: COLORS.danger, color: '#FFF', borderRadius: BORDER_RADIUS, padding: '10px 20px', border: 'none', fontWeight: 'bold' }} onClick={() => setShowOrderModal(false)}>Cancel</button>
+        <div className="modal fade show" style={{ display: 'block', background: 'rgba(44,62,80,0.2)' }} tabIndex="-1">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h2 className="modal-title">Place Order</h2>
+                <button type="button" className="btn-close" onClick={() => setShowOrderModal(false)}></button>
+              </div>
+              <div className="modal-body">
+                <p>Selected Products:</p>
+                <ul className="list-group mb-3">
+                  {products.filter(p => selectedProducts.includes(p.id)).map(p => (
+                    <li key={p.id} className="list-group-item">{p.name} (Current: {p.current_stock}, Reorder Level: {p.reorder_level})</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-success" onClick={() => setShowOrderModal(false)}>Confirm Order</button>
+                <button className="btn btn-danger" onClick={() => setShowOrderModal(false)}>Cancel</button>
+              </div>
             </div>
           </div>
         </div>
