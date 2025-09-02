@@ -95,16 +95,11 @@ export default function ProductDetails({ setPage }) {
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: FONT.family }}>
       <div className="container py-4">
         {/* Header/Nav */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded px-4">
           <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
           <div className="navbar-nav ms-auto">
             <span onClick={() => setPage('dashboard')} className="nav-link fw-semibold text-secondary" style={{ cursor: 'pointer' }}>Dashboard</span>
             <span className="nav-link active fw-semibold text-primary">Products</span>
-          </div>
-          <div className="d-flex align-items-center ms-4">
-            <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center" style={{ width: 32, height: 32 }}>
-              <span className="text-white fw-bold">U</span>
-            </div>
           </div>
         </nav>
 

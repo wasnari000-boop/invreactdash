@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 // Utility functions and constants
 const COLORS = {
@@ -139,7 +140,7 @@ export default function StockDashboard({ setPage }) {
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
       <div className="container py-4">
         {/* Header/Nav */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-5 rounded">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded px-4">
         <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
         <div className="navbar-nav ms-auto">
           <span className="nav-link active fw-semibold text-primary">Dashboard</span>
@@ -189,16 +190,32 @@ export default function StockDashboard({ setPage }) {
           </div>
         </div>
       </div>
-  {/* Sales History Graphic (Bar Chart Placeholder) */}
+  {/* Sales History Chart */}
   <div className="mb-5">
-        <h2 className="text-dark mb-3">Sales History</h2>
-        <div className="row align-items-end" style={{ height: 120 }}>
-          {salesHistory.map((entry, idx) => (
-            <div key={idx} className="col text-center">
-              <div className="bg-primary mx-auto rounded" style={{ height: entry.sales, width: '60%' }}></div>
-              <div className="text-secondary mt-2">{entry.month}</div>
+        <div className="card shadow-sm">
+          <div className="card-body">
+            <h2 className="text-dark h5 mb-4">Sales History</h2>
+            <div style={{ height: 300 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={salesHistory}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip
+                    formatter={(value) => [`$${value}`, 'Sales']}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="sales"
+                    stroke={COLORS.primary}
+                    strokeWidth={2}
+                    dot={{ fill: COLORS.primary, strokeWidth: 2, r: 4 }}
+                    activeDot={{ r: 6, stroke: COLORS.primary, strokeWidth: 2 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
-          ))}
+          </div>
         </div>
       </div>
   {/* Low Stock Alert Section */}
