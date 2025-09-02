@@ -76,7 +76,7 @@ function getStatusColor(status) {
 }
 
 
-export default function StockDashboard() {
+export default function StockDashboard({ setPage }) {
   // Data source toggle: mock or real
   const [useMock, setUseMock] = useState(true);
   const [products, setProducts] = useState(MOCK_PRODUCTS);
@@ -143,7 +143,7 @@ export default function StockDashboard() {
         <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
         <div className="navbar-nav ms-auto">
           <span className="nav-link active fw-semibold text-primary">Dashboard</span>
-          <a href="/product-details" className="nav-link fw-semibold text-secondary">Products</a>
+          <span onClick={() => setPage('product')} className="nav-link fw-semibold text-secondary" style={{ cursor: 'pointer' }}>Products</span>
         </div>
       </nav>
   {/* Data Source Toggle */}

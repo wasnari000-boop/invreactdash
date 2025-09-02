@@ -74,7 +74,7 @@ function getTypeColor(type) {
   return type === 'purchase' ? COLORS.info : COLORS.success;
 }
 
-export default function ProductDetails() {
+export default function ProductDetails({ setPage }) {
   const [reorderQuantity, setReorderQuantity] = useState(product.reorder_level);
   const [showReorderSuccess, setShowReorderSuccess] = useState(false);
   const [isReordering, setIsReordering] = useState(false);
@@ -98,7 +98,7 @@ export default function ProductDetails() {
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded">
           <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
           <div className="navbar-nav ms-auto">
-            <a href="/" className="nav-link fw-semibold text-secondary">Dashboard</a>
+            <span onClick={() => setPage('dashboard')} className="nav-link fw-semibold text-secondary" style={{ cursor: 'pointer' }}>Dashboard</span>
             <span className="nav-link active fw-semibold text-primary">Products</span>
           </div>
           <div className="d-flex align-items-center ms-4">
