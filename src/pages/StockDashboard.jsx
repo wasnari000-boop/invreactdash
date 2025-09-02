@@ -137,9 +137,9 @@ export default function StockDashboard() {
 
   return (
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
-  <div className="container mx-auto px-0 d-block" style={{ maxWidth: '1200px', width: '100%', margin: '0 auto' }}>
-  {/* Header/Nav */}
-  <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-5 w-100" style={{ maxWidth: '1200px' }}>
+      <div className="container py-4">
+        {/* Header/Nav */}
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-5 rounded">
         <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
         <div className="navbar-nav ms-auto">
           <span className="nav-link active fw-semibold text-primary">Dashboard</span>
@@ -147,13 +147,13 @@ export default function StockDashboard() {
         </div>
       </nav>
   {/* Data Source Toggle */}
-  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+  <div className="mb-5">
         <button className="btn btn-info text-dark fw-bold" onClick={handleDataToggle}>
           {useMock ? 'Switch to Real Data' : 'Use Mock Data'}
         </button>
       </div>
       {/* KPI Cards */}
-  <div className="w-100 mb-5" style={{ maxWidth: '1200px' }}>
+  <div className="mb-5">
         <div className="row g-5">
           <div className="col-md-3">
             <div className="card shadow-sm h-100">
@@ -190,7 +190,7 @@ export default function StockDashboard() {
         </div>
       </div>
   {/* Sales History Graphic (Bar Chart Placeholder) */}
-  <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
+  <div className="mb-5">
         <h2 className="text-dark mb-3">Sales History</h2>
         <div className="row align-items-end" style={{ height: 120 }}>
           {salesHistory.map((entry, idx) => (

@@ -93,9 +93,9 @@ export default function ProductDetails() {
 
   return (
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: FONT.family }}>
-      <div className="container-fluid px-4">
+      <div className="container py-4">
         {/* Header/Nav */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 mb-4 rounded">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded">
           <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
           <div className="navbar-nav ms-auto">
             <a href="/" className="nav-link fw-semibold text-secondary">Dashboard</a>
