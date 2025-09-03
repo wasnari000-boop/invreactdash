@@ -81,16 +81,23 @@ export default function StockDashboard({ setPage }) {
   // Data source toggle: mock or real
   const [useMock, setUseMock] = useState(true);
   const [products, setProducts] = useState(MOCK_PRODUCTS);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Fetch real data from PHP backend (example endpoint)
   const fetchRealData = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const res = await fetch('http://localhost/inventory-api/products.php');
+      if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       setProducts(data);
     } catch (e) {
-      alert('Failed to fetch real data, using mock data.');
+      setError('Failed to fetch real data, using mock data.');
       setProducts(MOCK_PRODUCTS);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -152,6 +159,8 @@ export default function StockDashboard({ setPage }) {
         <button className="btn btn-info text-dark fw-bold" onClick={handleDataToggle}>
           {useMock ? 'Switch to Real Data' : 'Use Mock Data'}
         </button>
+        {loading && <span className="ms-3 text-secondary">Loading...</span>}
+        {error && <div className="mt-2 text-danger fw-bold">{error}</div>}
       </div>
       {/* KPI Cards */}
   <div className="mb-5">
