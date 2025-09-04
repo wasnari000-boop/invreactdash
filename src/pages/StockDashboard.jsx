@@ -5,14 +5,14 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YA
 
 // Utility functions and constants
 const COLORS = {
-  primary: '#0d6efd',
-  secondary: '#6c757d',
-  success: '#198754',
-  danger: '#dc3545',
-  warning: '#ffc107',
-  info: '#0dcaf0',
-  text: '#212529',
-  surface: '#f8f9fa'
+  primary: '#4a90e2',
+  secondary: '#5d6d7e',
+  success: '#66bb6a',
+  danger: '#e57373',
+  warning: '#ffd54f',
+  info: '#7986cb',
+  text: '#455a64',
+  surface: '#eceff1'
 };
 
 // Utility function to get badge text color based on background
@@ -29,10 +29,10 @@ const getBadgeTextColor = (backgroundColor) => {
 // ...existing code...
 
 function getStatusColor(status) {
-  if (status === 'in stock') return '#198754';  // success color
-  if (status === 'low') return '#ffc107';       // warning color
-  if (status === 'out of stock') return '#dc3545'; // danger color
-  return '#212529';  // text color
+  if (status === 'in stock') return COLORS.success;
+  if (status === 'low') return COLORS.warning;
+  if (status === 'out of stock') return COLORS.danger;
+  return COLORS.text;
 }
 
 
@@ -133,46 +133,46 @@ export default function StockDashboard({ setPage, setSelectedProductId }) {
     <div className="bg-light min-vh-100 w-100" style={{ fontFamily: 'Poppins, Inter, Arial, sans-serif' }}>
       <div className="container py-4">
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded px-4">
-          <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
+          <span className="navbar-brand fw-bold fs-3" style={{ color: COLORS.primary }}>InventoryFlow</span>
           <div className="navbar-nav ms-auto">
-            <span className="nav-link active fw-semibold text-primary">Dashboard</span>
-            <span onClick={() => setPage('product')} className="nav-link fw-semibold text-secondary" style={{ cursor: 'pointer' }}>Products</span>
+            <span className="nav-link active fw-semibold" style={{ color: COLORS.primary }}>Dashboard</span>
+            <span onClick={() => setPage('product')} className="nav-link fw-semibold" style={{ color: COLORS.secondary, cursor: 'pointer' }}>Products</span>
           </div>
         </nav>
         {loading && <span className="ms-3 text-secondary">Loading...</span>}
-        {error && <div className="mt-2 text-danger fw-bold">{error}</div>}
-        {orderSuccess && <div className="alert alert-success mt-2">Reorder placed successfully!</div>}
+        {error && <div className="mt-2 fw-bold" style={{ color: COLORS.danger }}>{error}</div>}
+        {orderSuccess && <div className="alert mt-2" style={{ background: COLORS.success, color: 'white' }}>Reorder placed successfully!</div>}
         <div className="mb-5">
           <div className="row g-5">
             <div className="col-md-3">
               <div className="card shadow-sm h-100">
                 <div className="card-body">
                   <div className="card-title text-dark fs-6 mb-2">Total Inventory Value</div>
-                  <div className="card-text text-primary fw-bold fs-3">${totalValue}</div>
+                  <div className="card-text fw-bold fs-3" style={{ color: COLORS.primary }}>${totalValue}</div>
                 </div>
               </div>
             </div>
             <div className="col-md-3">
               <div className="card shadow-sm h-100">
                 <div className="card-body">
-                  <div className="card-title text-dark fs-6 mb-2">Total Products</div>
-                  <div className="card-text text-primary fw-bold fs-3">{totalProducts}</div>
+                  <div className="card-title fs-6 mb-2" style={{ color: COLORS.text }}>Total Products</div>
+                  <div className="card-text fw-bold fs-3" style={{ color: COLORS.primary }}>{totalProducts}</div>
                 </div>
               </div>
             </div>
             <div className="col-md-3">
               <div className="card shadow-sm h-100">
                 <div className="card-body">
-                  <div className="card-title text-dark fs-6 mb-2">Low Stock Items</div>
-                  <div className="card-text text-warning fw-bold fs-3">{lowStock}</div>
+                  <div className="card-title fs-6 mb-2" style={{ color: COLORS.text }}>Low Stock Items</div>
+                  <div className="card-text fw-bold fs-3" style={{ color: COLORS.warning }}>{lowStock}</div>
                 </div>
               </div>
             </div>
             <div className="col-md-3">
               <div className="card shadow-sm h-100">
                 <div className="card-body">
-                  <div className="card-title text-dark fs-6 mb-2">Out of Stock Items</div>
-                  <div className="card-text text-danger fw-bold fs-3">{outOfStock}</div>
+                  <div className="card-title fs-6 mb-2" style={{ color: COLORS.text }}>Out of Stock Items</div>
+                  <div className="card-text fw-bold fs-3" style={{ color: COLORS.danger }}>{outOfStock}</div>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function StockDashboard({ setPage, setSelectedProductId }) {
         <div className="w-100 mb-5 mt-5 pt-4" style={{ maxWidth: 1200 }}>
           <h2 className="text-dark mb-3">Needs Reordering</h2>
           <table className="table table-striped table-hover shadow-sm rounded">
-            <thead className="table-light">
+            <thead style={{ background: COLORS.surface }}>
               <tr>
                 <th><input type="checkbox" checked={selectedProducts.length === needsReorder.length && needsReorder.length > 0} onChange={handleSelectAll} /></th>
                 <th>Name</th>
@@ -218,18 +218,18 @@ export default function StockDashboard({ setPage, setSelectedProductId }) {
                     <td>{product.sku}</td>
                     <td>{product.current_stock}</td>
                     <td>{product.reorder_level}</td>
-                    <td><button className="btn btn-primary btn-sm" onClick={() => handleSingleReorder(product.id)}>Reorder</button></td>
+                    <td><button className="btn btn-sm" style={{ background: COLORS.primary, color: 'white' }} onClick={() => handleSingleReorder(product.id)}>Reorder</button></td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <button className="btn btn-primary mt-3 px-4 py-2" onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
+          <button className="btn mt-3 px-4 py-2" style={{ background: COLORS.primary, color: 'white' }} onClick={() => setShowOrderModal(true)}>Place Order for Selected</button>
         </div>
         <div className="w-100 mb-5" style={{ maxWidth: 1200 }}>
           <h2 className="text-dark mb-3">Inventory</h2>
           <table className="table table-bordered table-hover shadow-sm rounded">
-            <thead className="table-light">
+            <thead style={{ background: COLORS.surface }}>
               <tr>
                 <th>Thumbnail</th>
                 <th>Name</th>
@@ -251,7 +251,7 @@ export default function StockDashboard({ setPage, setSelectedProductId }) {
                   <td>{product.current_stock}</td>
                   <td><span className="fw-bold" style={{ color: getStatusColor(product.status) }}>{product.status}</span></td>
                   <td>${product.price}</td>
-                  <td><button className="btn btn-info btn-sm text-dark" onClick={() => handleViewProduct(product.id)}>View</button></td>
+                  <td><button className="btn btn-sm" style={{ background: COLORS.info, color: 'white' }} onClick={() => handleViewProduct(product.id)}>View</button></td>
                 </tr>
               ))}
             </tbody>
@@ -274,8 +274,8 @@ export default function StockDashboard({ setPage, setSelectedProductId }) {
                   </ul>
                 </div>
                 <div className="modal-footer">
-                  <button className="btn btn-success" onClick={handleBulkReorder} disabled={orderLoading}>Confirm Order</button>
-                  <button className="btn btn-danger" onClick={() => setShowOrderModal(false)}>Cancel</button>
+                  <button className="btn" style={{ background: COLORS.success, color: 'white' }} onClick={handleBulkReorder} disabled={orderLoading}>Confirm Order</button>
+                  <button className="btn" style={{ background: COLORS.danger, color: 'white' }} onClick={() => setShowOrderModal(false)}>Cancel</button>
                 </div>
               </div>
             </div>

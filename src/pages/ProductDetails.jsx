@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react';
 import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const COLORS = {
-  primary: '#0d6efd',
-  success: '#198754',
-  info: '#0dcaf0',
-  warning: '#ffc107',
-  danger: '#dc3545',
-  light: '#f8f9fa',
-  dark: '#212529'
+  primary: '#4a90e2',
+  secondary: '#5d6d7e',
+  success: '#66bb6a',
+  danger: '#e57373',
+  warning: '#ffd54f',
+  info: '#7986cb',
+  text: '#455a64',
+  surface: '#eceff1'
 };
 
 const FONT = {
@@ -66,8 +67,8 @@ export default function ProductDetails({ setPage, productId }) {
   };
 
   if (loading) return <div className="container py-4">Loading...</div>;
-  if (error) return <div className="container py-4 text-danger">{error}</div>;
-  if (!product) return <div className="container py-4">No product found.</div>;
+  if (error) return <div className="container py-4" style={{ color: COLORS.danger }}>{error}</div>;
+  if (!product) return <div className="container py-4" style={{ color: COLORS.text }}>No product found.</div>;
 
   const isLowStock = product.current_stock <= product.reorder_level;
 
@@ -77,17 +78,17 @@ export default function ProductDetails({ setPage, productId }) {
   const orderItems = [];
 
   return (
-    <div className="bg-light min-vh-100 w-100" style={{ fontFamily: FONT.family }}>
+    <div className="min-vh-100 w-100" style={{ fontFamily: FONT.family, background: COLORS.surface }}>
       <div className="container py-4">
-        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded px-4">
-          <span className="navbar-brand fw-bold text-primary fs-3">InventoryFlow</span>
+        <nav className="navbar navbar-expand-lg shadow-sm mb-4 rounded px-4" style={{ background: 'white' }}>
+          <span className="navbar-brand fw-bold fs-3" style={{ color: COLORS.primary }}>InventoryFlow</span>
           <div className="navbar-nav ms-auto">
-            <span onClick={() => setPage('dashboard')} className="nav-link fw-semibold text-secondary" style={{ cursor: 'pointer' }}>Dashboard</span>
-            <span className="nav-link active fw-semibold text-primary">Products</span>
+            <span onClick={() => setPage('dashboard')} className="nav-link fw-semibold" style={{ color: COLORS.secondary, cursor: 'pointer' }}>Dashboard</span>
+            <span className="nav-link active fw-semibold" style={{ color: COLORS.primary }}>Products</span>
           </div>
         </nav>
         {showReorderSuccess && (
-          <div className="alert alert-success alert-dismissible fade show" role="alert">
+          <div className="alert alert-dismissible fade show" role="alert" style={{ background: COLORS.success, color: 'white' }}>
             <strong>Success!</strong> Reorder request for {reorderQuantity} units has been submitted.
           </div>
         )}
@@ -97,18 +98,18 @@ export default function ProductDetails({ setPage, productId }) {
               <div className="card-body">
                 <div className="row align-items-center">
                   <div className="col-md-2 text-center">
-                    <div className="bg-light rounded d-flex align-items-center justify-content-center" style={{ width: 120, height: 120 }}>
-                      <Package size={48} className="text-secondary" />
+                    <div className="rounded d-flex align-items-center justify-content-center" style={{ width: 120, height: 120, background: COLORS.surface }}>
+                      <Package size={48} style={{ color: COLORS.secondary }} />
                     </div>
                   </div>
                   <div className="col-md-7">
-                    <h2 className="text-primary mb-2">{product.name}</h2>
+                    <h2 className="mb-2" style={{ color: COLORS.primary }}>{product.name}</h2>
                     <div className="d-flex align-items-center gap-3 mb-3">
                       <span className="badge" style={{ background: product.category.color, color: getBadgeTextColor(product.category.color), padding: '6px 16px', borderRadius: 8 }}>
                         {product.category.name}
                       </span>
                       {isLowStock && (
-                        <span className="badge bg-warning text-dark d-flex align-items-center gap-1">
+                        <span className="badge d-flex align-items-center gap-1" style={{ background: COLORS.warning, color: getBadgeTextColor(COLORS.warning) }}>
                           <AlertTriangle size={14} />
                           Low Stock
                         </span>
@@ -123,7 +124,7 @@ export default function ProductDetails({ setPage, productId }) {
                       <div className="col-md-6">
                         <p className="text-secondary mb-1"><strong>Cost:</strong> ${product.cost}</p>
                         <p className="text-secondary mb-1"><strong>Price:</strong> ${product.price}</p>
-                        <p className="text-secondary mb-1"><strong>Current Stock:</strong> <span className={`ms-1 ${isLowStock ? 'text-warning fw-bold' : ''}`}>{product.current_stock}</span></p>
+                        <p className="mb-1" style={{ color: COLORS.secondary }}><strong>Current Stock:</strong> <span className="ms-1" style={{ color: isLowStock ? COLORS.warning : COLORS.text, fontWeight: isLowStock ? 'bold' : 'normal' }}>{product.current_stock}</span></p>
                         <p className="text-secondary mb-1"><strong>Reorder Level:</strong> {product.reorder_level}</p>
                         <p className="text-secondary mb-1"><strong>Max Stock Level:</strong> {product.max_stock_level}</p>
                       </div>
@@ -131,9 +132,9 @@ export default function ProductDetails({ setPage, productId }) {
                   </div>
                   <div className="col-md-3">
                     <div className="d-flex flex-column gap-2">
-                      <button className="btn btn-info fw-bold text-white">Adjust Stock</button>
-                      <button className="btn btn-primary fw-bold text-white">Edit Product</button>
-                      <button className="btn btn-success fw-bold text-white">View Order History</button>
+                      <button className="btn fw-bold" style={{ background: COLORS.info, color: 'white' }}>Adjust Stock</button>
+                      <button className="btn fw-bold" style={{ background: COLORS.primary, color: 'white' }}>Edit Product</button>
+                      <button className="btn fw-bold" style={{ background: COLORS.success, color: 'white' }}>View Order History</button>
                     </div>
                   </div>
                 </div>
@@ -163,7 +164,7 @@ export default function ProductDetails({ setPage, productId }) {
                     <div className="form-control-plaintext">{product.supplier}</div>
                   </div>
                   <div className="col-md-3 d-flex align-items-end">
-                    <button className="btn btn-warning fw-bold w-100" onClick={handleQuickReorder} disabled={isReordering || reorderQuantity <= 0}>
+                    <button className="btn fw-bold w-100" style={{ background: COLORS.warning, color: getBadgeTextColor(COLORS.warning) }} onClick={handleQuickReorder} disabled={isReordering || reorderQuantity <= 0}>
                       {isReordering ? (<><span className="spinner-border spinner-border-sm me-2" role="status"></span>Ordering...</>) : ('Place Reorder')}
                     </button>
                   </div>
